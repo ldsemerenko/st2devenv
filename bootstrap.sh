@@ -21,8 +21,6 @@ yum -y install ${DEV_TOOLS} ${PACKAGES} ${EPEL_PACKAGES}
 
 yum clean all
 
-pwd
-
 
 # Install bootstrap modules:
 BOOTSTRAP_MODS_DIR="/vagrant/bootstrap-mods"

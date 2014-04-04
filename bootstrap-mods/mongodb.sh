@@ -1,10 +1,12 @@
 install_mongodb() {
     # Install mongodb
-    yum -y install mongodb
+    yum -y install mongodb mongodb-server
     # Make mongodb start on reboot
-    chkconfig mongod on
+    systemctl enable mondod.service
+#    chkconfig mongod on
     # Make mongodb start now
-    service mongod start
+#    service mongod start
+    systemctl start mongod.service
 }
 
 yum -y install mongodb
