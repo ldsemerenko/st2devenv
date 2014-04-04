@@ -119,4 +119,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Paste into end of Vagrantfile
   config.vm.provision :shell, :path => "bootstrap.sh"
+
+  # Forward Apache ports
+  config.vm.network "forwarded_port", guest: 80, host: 80, auto_correct: true
+
+  # Forward HuBot ports
+  config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
+
+  # Forward stackaton ports
+  config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
+
+  # Forward logstash ports
+  config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true
+  config.vm.network "forwarded_port", guest: 9292, host: 9292, auto_correct: true
 end
