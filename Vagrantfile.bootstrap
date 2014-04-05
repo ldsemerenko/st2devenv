@@ -1,2 +1,0 @@
-  # Paste into end of Vagrantfile
-  config.vm.provision :shell, :path => "bootstrap.sh"

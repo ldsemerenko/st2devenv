@@ -1,0 +1,19 @@
+2014-04-03 18:43:59.128 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('qpid = oslo.messaging._drivers.impl_qpid:QpidDriver') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.139 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('zmq = oslo.messaging._drivers.impl_zmq:ZmqDriver') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.139 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('kombu = oslo.messaging._drivers.impl_rabbit:RabbitDriver') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.140 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('rabbit = oslo.messaging._drivers.impl_rabbit:RabbitDriver') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.140 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('fake = oslo.messaging._drivers.impl_fake:FakeDriver') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.155 19659 INFO mistral.engine.fake.engine [-] Engine pool initialized...
+2014-04-03 18:43:59.157 19659 DEBUG mistral.openstack.common.lockutils [-] Got semaphore "dbapi_backend" lock /Users/dzimine/Dev/openstack/mistral/mistral/openstack/common/lockutils.py:168
+2014-04-03 18:43:59.158 19659 DEBUG mistral.openstack.common.lockutils [-] Got semaphore / lock "__get_backend" inner /Users/dzimine/Dev/openstack/mistral/mistral/openstack/common/lockutils.py:248
+2014-04-03 18:43:59.290 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('blocking = oslo.messaging._executors.impl_blocking:BlockingExecutor') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.295 19659 DEBUG mistral.openstack.common.lockutils [-] Semaphore / lock released "__get_backend" inner /Users/dzimine/Dev/openstack/mistral/mistral/openstack/common/lockutils.py:252
+2014-04-03 18:43:59.297 19659 DEBUG stevedore.extension [-] found extension EntryPoint.parse('eventlet = oslo.messaging._executors.impl_eventlet:EventletExecutor') _load_plugins /Users/dzimine/Dev/openstack/mistral/.tox/py27/lib/python2.7/site-packages/stevedore/extension.py:156
+2014-04-03 18:43:59.811 19659 INFO __main__ [-] Mistral API is serving on http://0.0.0.0:8989 (PID=19659)
+2014-04-03 18:45:01.534 19659 WARNING wsme.api [-] Client-side error: Unknown argument: "name"
+2014-04-03 18:45:14.587 19659 DEBUG mistral.api.controllers.v1.workbook [-] Fetch workbooks. get_all /Users/dzimine/Dev/openstack/mistral/mistral/api/controllers/v1/workbook.py:90
+2014-04-03 18:45:37.365 19659 DEBUG mistral.api.controllers.root [-] Fetching API versions. index /Users/dzimine/Dev/openstack/mistral/mistral/api/controllers/root.py:44
+2014-04-03 18:45:38.365 19659 DEBUG mistral.api.controllers.root [-] Freaking out API versions. index /Users/dzimine/Dev/openstack/mistral/mistral/api/controllers/root.py:44
+2014-04-03 18:45:38.365 19659 DEBUG mistral.api.controllers.root [-] doing something not intersting at all...
+2014-04-03 18:45:39.365 19659 ERROR mistral.api.controllers.root [-] what is this again?
+
