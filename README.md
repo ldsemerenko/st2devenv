@@ -18,7 +18,7 @@ physical_host$ vagrant up
 physical_host$ vagrant ssh
 
 
-guest$ cd /vagrant/code
+guest$ cd /home/vagrant/code
 
 
 guest$ git clone https://github.com/StackStorm/stackaton.git
