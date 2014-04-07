@@ -52,7 +52,6 @@ toxtivate() {
 
 
 # Aliases
-alias svn='svn --username mar'
 alias vi='vim'
 
 
@@ -74,8 +73,9 @@ fi
 if [ ${INTERACTIVE} ]; then
     git config -l | grep -q 'user.name' || git config -l | grep -q 'user.email'
     if [ "${?}" != "0" ]; then
-        echo "Set git user values: git config --global user.name 'Michael Richmond'"
-        echo "Set git user values: git config --global user.email 'mar@stackstorm.com'"
+        echo "Set git config values. For example:"
+        echo "Set git user values: git config --global user.name 'Stormin Stanley'"
+        echo "Set git user values: git config --global user.email 'stan@stackstorm.com'"
         echo "Set git core values: git config --global core.editor 'vim'"
     fi
 fi
