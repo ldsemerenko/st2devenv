@@ -22,3 +22,7 @@ guest$ cd /vagrant/code
 
 
 guest$ git clone https://github.com/StackStorm/stackaton.git
+
+OR (with SSH)
+
+guest$ git clone git@github.com:StackStorm/stackaton.git
