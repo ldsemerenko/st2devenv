@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  # config.vm.box_url = "http://domain.com/path/to/above.box"
+  config.vm.box_url = "./fedora20-dev-x86_64.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -121,7 +121,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "bootstrap.sh"
 
   # Forward Apache ports
-  config.vm.network "forwarded_port", guest: 80, host: 80, auto_correct: true
+  config.vm.network "forwarded_port", guest: 9080, host: 80, auto_correct: true
 
   # Forward HuBot ports
   config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true

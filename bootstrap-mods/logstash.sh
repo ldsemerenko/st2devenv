@@ -1,32 +1,50 @@
 #!/usr/bin/env bash
 
+#
+LOGSTASH_BASEDIR=/opt
+
 # PREREQUISITES
+
+# Install Java JDK
 yum install -y java-1.7.0-openjdk
 
-BASEDIR=/usr/local/share
+# Install ElasticSearch:
+# configure RPM repo, get the package, register as a servcie
+rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch
 
-# GET LOGSTASH & ELASTICSEARCH
+cat > /etc/yum.repos.d/elasticsearch.repo << EOF
+[elasticsearch-1.0]
+name=Elasticsearch repository for 1.0.x packages
+baseurl=http://packages.elasticsearch.org/elasticsearch/1.0/centos
+gpgcheck=1
+gpgkey=http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+enabled=1
+EOF
+
+yum -y install elasticsearch
+
+# Install kopf plugin
+# To access, http://localhost:9200/_plugin/kopf/
+/usr/share/elasticsearch/bin/plugin -install lmenezes/elasticsearch-kopf
+
+/sbin/chkconfig --add elasticsearch
+service elasticsearch start
+
+
+# INSTALL LOGSTASH 
 #
-cd $BASEDIR
 # Install logstash
-curl https://download.elasticsearch.org/logstash/logstash/logstash-1.4.0.tar.gz | tar -xzf -
-chown -hR vagrant logstash-1.4.0
+curl https://download.elasticsearch.org/logstash/logstash/logstash-1.4.0.tar.gz | tar -C $BASEDIR -xzf -
+chown -hR vagrant $BASEDIR/logstash-1.4.0
 
-# Install elasticsearch 
-# problem: should know what sudo and what not...
-# TODO: put it somewhere, copy over 
-curl https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.tar.gz | tar -xzf -
-chown -hR vagrant elasticsearch-1.0.1
 
-# Install kopf plugin, then access it as
-# http://localhost:9200/_plugin/kopf/
-$BASEDIR/elasticsearch-1.0.1/bin/plugin -install lmenezes/elasticsearch-kopf
+# TODO: configure to run as service
+# Problem: the scrip is for earlier versions...
+# cp /vagrant/logstash/lostash.init.d /etc/init.d/logstash
+# /sbin/chkconfig --add logstash
+# service logstash start
 
 # RUNNING
-# 
-# Run Elasticsearch as a daemon (port 9200)
-# TODO(dzimine): configure to run as a service
-#$BASEDIR/elasticsearch-1.0.1/bin/elasticsearch -d
 
 # Run Logstash agent 
 # TODO(dzimine): configure to run as a service
