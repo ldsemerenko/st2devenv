@@ -43,3 +43,4 @@ service logstash start
 # Logstash web app (port 9292, and needs browser access to 9200)
 chkconfig --add logstash-web
 service logstash-web start
+
