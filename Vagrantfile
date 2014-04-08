@@ -16,10 +16,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Configure a private network 
   config.vm.network "private_network", ip: "192.168.50.50"
 
-  # Forward ElasticSearch ports
+  # Forward stackaton REST API port
+  config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
+  
+  # Forward ElasticSearch port
   config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true
   
-# Forward Kibana ports
+# Forward Kibana port
   config.vm.network "forwarded_port", guest: 9292, host: 9292, auto_correct: true
 
   # Start shell provisioning
