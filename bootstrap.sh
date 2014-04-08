@@ -15,12 +15,16 @@ EPEL_PACKAGES=""
 
 yum -y install ${BASE_TOOLS}
 
+#Note(dzimine): Temporarily commented out to speed up.
 yum -y update
 
 yum -y install ${DEV_TOOLS} ${PACKAGES} ${EPEL_PACKAGES}
 
 yum clean all
 
+# Stop the firewall so grease host-guest access
+systemctl stop firewalld.service
+systemctl disable firewalld.service
 
 # Install bootstrap modules:
 BOOTSTRAP_MODS_DIR="/vagrant/bootstrap-mods"

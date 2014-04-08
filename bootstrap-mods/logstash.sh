@@ -1,44 +1,45 @@
 #!/usr/bin/env bash
 
+#
+LOGSTASH_DIR=/opt
+
 # PREREQUISITES
+
+# Install Java JDK
 yum install -y java-1.7.0-openjdk
 
-BASEDIR=/usr/local/share
+# SETUP ElasticSearch and Logstash:
+# configure RPM repo, get the package, register as a servcie
+rpm --import http://packages.elasticsearch.org/GPG-KEY-elasticsearch
 
-# GET LOGSTASH & ELASTICSEARCH
-#
-cd $BASEDIR
-# Install logstash
-curl https://download.elasticsearch.org/logstash/logstash/logstash-1.4.0.tar.gz | tar -xzf -
-chown -hR vagrant logstash-1.4.0
+cat > /etc/yum.repos.d/elasticsearch.repo << EOF
+[elasticsearch-1.0]
+name=Elasticsearch repository for 1.0.x packages
+baseurl=http://packages.elasticsearch.org/elasticsearch/1.0/centos
+gpgcheck=1
+gpgkey=http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+enabled=1
 
-# Install elasticsearch 
-# problem: should know what sudo and what not...
-# TODO: put it somewhere, copy over 
-curl https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.tar.gz | tar -xzf -
-chown -hR vagrant elasticsearch-1.0.1
+[logstash-1.4]
+name=logstash repository for 1.4.x packages
+baseurl=http://packages.elasticsearch.org/logstash/1.4/centos
+gpgcheck=1
+gpgkey=http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+enabled=1
+EOF
 
-# Install kopf plugin, then access it as
-# http://localhost:9200/_plugin/kopf/
-$BASEDIR/elasticsearch-1.0.1/bin/plugin -install lmenezes/elasticsearch-kopf
+mkdir /var/run/logstash-web
+yum -y install logstash elasticsearch logstash-contrib.noarch 
+chkconfig --add elasticsearch
+chkconfig elasticsearch on
+service elasticsearch start
 
-# RUNNING
-# 
-# Run Elasticsearch as a daemon (port 9200)
-# TODO(dzimine): configure to run as a service
-#$BASEDIR/elasticsearch-1.0.1/bin/elasticsearch -d
+# Link stackaton config file 
+ln -s /vagrant/logstash/stackaton.conf /etc/logstash/conf.d/
 
-# Run Logstash agent 
-# TODO(dzimine): configure to run as a service
-#$BASEDIR/logstash-1.4.0/bin/logstash agent --config /vagrant/logstash/ls.conf
+chkconfig --add logstash
+service logstash start
 
-# Run Logstash web app (port 9292)
-# TODO(dzimine): configure to run as a service (or move out of VM all together)
-#$BASEDIR/logstash-1.4.0/bin/logstash-web
-
-# CLEANUP LOGSTASH
-# 
-# Swipe elasticsearch index
-#curl -XDELETE 'http://localhost:9200/_all'
-# Remove file marker to parse the log from the beginning
-#rm /vagrant/sincedb-test
+# Logstash web app (port 9292, and needs browser access to 9200)
+chkconfig --add logstash-web
+service logstash-web start

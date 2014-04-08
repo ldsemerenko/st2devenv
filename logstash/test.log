@@ -16,4 +16,5 @@
 2014-04-03 18:45:38.365 19659 DEBUG mistral.api.controllers.root [-] Freaking out API versions. index /Users/dzimine/Dev/openstack/mistral/mistral/api/controllers/root.py:44
 2014-04-03 18:45:38.365 19659 DEBUG mistral.api.controllers.root [-] doing something not intersting at all...
 2014-04-03 18:45:39.365 19659 ERROR mistral.api.controllers.root [-] what is this again?
-
+2014-04-07 15:24:29.375 5193 AUDIT stackstorm.stackrunner [-] Staction "shellcmd" triggered for target "*" with arguments "{u'cmd': u'ls'}". Staction execution id "5343259db1859714498c7790"
+2014-04-07 15:24:29.396 5193 AUDIT stackstorm.stackrunner [-] Staction execution id "5343259db1859714498c7790" completed with result "{'exit_code': 0, 'repo_id': 'git:41977d22860bb73391695326d9c7477995c27e09', 'stderr': [], 'execution_id': '5343259db1859714498c7790', 'stdout': ['Makefile\nREADME.md\nbin\netc\nhubot\nopenstack-common.conf\nrequirements.txt\nsetup.cfg\nsetup.py\nstackaton.egg-info\nstackstorm\nstaction_scripts\ntest\ntest-requirements.txt\ntools\ntox.ini\n']}"
