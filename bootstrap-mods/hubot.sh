@@ -4,6 +4,8 @@ yum -y install ${PACKAGES}
 
 npm install -g hubot coffee-script
 
+cp /vagrant/create_hubot.sh /home/vagrant
+
 # TO CREATE the Hubot Instance:
 # 
 # hubot --create hubot
