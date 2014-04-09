@@ -1,8 +1,8 @@
-PACKAGES="nodejs npm coffee-script"
+PACKAGES="npm icu libicu libicu-devel"
 
 yum -y install ${PACKAGES}
 
-npm install -g hubot
+npm install -g hubot coffee-script
 
 # TO CREATE the Hubot Instance:
 # 
