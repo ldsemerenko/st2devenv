@@ -13,16 +13,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.box_url = "https://s3-us-west-1.amazonaws.com/stackstorm.com/images/fedora20-dev-x86_64.box"
 
     # Configure a private network 
-    config.vm.network "private_network", ip: "192.168.50.50", virtualbox__intnet: "mynetwork"
+    config.vm.network "private_network", ip: "172.168.50.50"
 
     # Forward stackaton REST API port
-    config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
+    # config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
   
     # Forward ElasticSearch port
-    config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true
+    # config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true
   
     # Forward Kibana port
-    config.vm.network "forwarded_port", guest: 9292, host: 9292, auto_correct: true
+    # config.vm.network "forwarded_port", guest: 9292, host: 9292, auto_correct: true
 
     # Start shell provisioning
     config.vm.provision :shell, :path => "bootstrap.sh"
