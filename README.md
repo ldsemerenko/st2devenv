@@ -30,6 +30,8 @@ Now, inside the guest, clone the codebase from github, and run `tox` to install 
 guest$ git clone https://github.com/StackStorm/stackaton.git
 guest$ cd stackaton
 guest$ tox
+guest$ cd /vagrant
+guest$ ./create_hubot.sh
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
