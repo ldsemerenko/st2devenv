@@ -21,15 +21,3 @@ physical_host$ vagrant ssh
 
 guest$ cd /home/vagrant/code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-Now, inside the guest, clone the codebase from github, and run `tox` to install all the dependencies. It'll take couple of minutes, get yourself a coffee :). 
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-guest$ git clone https://github.com/StackStorm/stackaton.git
-guest$ cd stackaton
-guest$ tox
-guest$ cd /vagrant
-guest$ ./create_hubot.sh
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
