@@ -10,6 +10,7 @@ print_usage()
     echo ""
     echo "where target is one of:"
     echo "      stackaton    setup the vm for the stackaton demo"
+    echo "      clean        empty the $BOOTSTRAPMODS_ACTIVE_DIR folder"
     exit -1
 }
 
