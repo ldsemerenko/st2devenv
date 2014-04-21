@@ -22,14 +22,10 @@ yum -y install ${DEV_TOOLS} ${PACKAGES} ${EPEL_PACKAGES}
 
 yum clean all
 
-# Stop the firewall so grease host-guest access
-systemctl stop firewalld.service
-systemctl disable firewalld.service
-
 # Install bootstrap modules:
-BOOTSTRAP_MODS_DIR="/vagrant/bootstrap-mods"
-if [ -d "/vagrant/bootstrap-mods" ]; then
-    for module in `find ${BOOTSTRAP_MODS_DIR} -type f` ; do
+BOOTSTRAP_MODS_DIR="/vagrant/bootstrap-mods-active"
+if [ -d "$BOOTSTRAP_MODS_DIR" ]; then
+    for module in `find ${BOOTSTRAP_MODS_DIR} -type f -o -type l` ; do
         echo "Running ${module}"
         bash ${module}
     done

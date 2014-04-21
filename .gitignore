@@ -3,3 +3,4 @@ code
 *.swp
 .vagrant
 logstash/sincedb*
+bootstrap-mods-active/*
