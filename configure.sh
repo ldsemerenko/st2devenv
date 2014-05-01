@@ -10,6 +10,7 @@ print_usage()
     echo ""
     echo "where target is one of:"
     echo "      stackaton    setup the vm for the stackaton demo"
+    echo "      poc          setup the vm for poc development"
     echo "      clean        empty the $BOOTSTRAPMODS_ACTIVE_DIR folder"
     exit -1
 }
@@ -46,6 +47,16 @@ if [ "$#" -ne "0" ]; then
     while [ "$#" -gt "0" ]; do
         case $1 in
             stackaton)
+                activate codedir.sh
+                activate disablefirewall.sh
+                activate epel.sh
+                activate hubot.sh
+                activate logstash.sh
+                activate mongodb.sh
+                activate tox.sh
+                shift
+                ;;
+            poc)
                 activate codedir.sh
                 activate disablefirewall.sh
                 activate epel.sh
