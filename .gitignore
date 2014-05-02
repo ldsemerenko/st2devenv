@@ -4,3 +4,4 @@ code
 .vagrant
 logstash/sincedb*
 bootstrap-mods-active/*
+stackaton
