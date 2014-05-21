@@ -70,6 +70,17 @@ if [ -d "/vagrant/.ssh" ]; then
     done
 fi
 
+if [ -f "/vagrant/git-completion.bash" ]; then
+    if [ ! -e "~vagrant/git-completion.bash" ]; then
+        cp -n /vagrant/git-completion.bash ~vagrant/git-completion.bash
+    fi  
+    grep -cq "git-completion.bash" ~/.bashrc
+    if [ "${?}" = "1" ]; then
+        echo "" >> ~vagrant/.bashrc
+        echo "source ~/git-completion.bash" >> ~vagrant/.bashrc
+    fi  
+fi
+
 if [ ${INTERACTIVE} ]; then
     git config -l | grep -q 'user.name' || git config -l | grep -q 'user.email'
     if [ "${?}" != "0" ]; then
