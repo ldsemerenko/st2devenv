@@ -15,6 +15,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Configure a private network 
     config.vm.network "private_network", ip: "172.168.50.50"
 
+    # Forward Action controller port = 9101
+    config.vm.network "forwarded_port", guest: 9101, host: 9101
+    # Forward ActionRunner controller port = 9501
+    config.vm.network "forwarded_port", guest: 9501, host: 9501
+
     # Forward stackaton REST API port
     # config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
   

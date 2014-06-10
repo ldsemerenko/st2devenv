@@ -50,6 +50,15 @@ toxtivate() {
     . .tox/${PYTHON_VER}/bin/activate
 }
 
+virtivate() {
+    if [ ! -d virtualenv ]; then
+        echo "error: no virtualenv folder found in pwd. Is this a code root?"
+        return
+    fi
+
+    . virtualenv/bin/activate
+}
+
 
 # Aliases
 alias vi='vim'
@@ -73,12 +82,12 @@ fi
 if [ -f "/vagrant/git-completion.bash" ]; then
     if [ ! -e "~vagrant/git-completion.bash" ]; then
         cp -n /vagrant/git-completion.bash ~vagrant/git-completion.bash
-    fi  
+    fi
     grep -cq "git-completion.bash" ~/.bashrc
     if [ "${?}" = "1" ]; then
         echo "" >> ~vagrant/.bashrc
         echo "source ~/git-completion.bash" >> ~vagrant/.bashrc
-    fi  
+    fi
 fi
 
 if [ ${INTERACTIVE} ]; then
