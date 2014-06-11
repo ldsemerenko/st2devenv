@@ -1,8 +1,8 @@
 #!/bin/bash
-
+BOT_NAME="stormbot"
 CODE_DIR="/home/vagrant/code"
 
-HUBOT_DIR="${CODE_DIR}/myhubot"
+HUBOT_DIR="${CODE_DIR}/${BOT_NAME}"
 
 STACKATON_DIR="${CODE_DIR}/stackaton"
 
@@ -21,10 +21,8 @@ if [ -d "${HUBOT_DIR}" ]; then
 fi
 
 cd ${CODE_DIR}
-hubot --create `basename ${HUBOT_DIR}`
+hubot --create ${BOT_NAME}
 cd ${HUBOT_DIR}
 
-rm package.json
-ln -s ${STACKATON_DIR}/hubot/package.json .
 ln -s ${STACKATON_DIR}/hubot/hubot-hipchat.sh .
 ln -s ${STACKATON_DIR}/hubot/scripts/* scripts/

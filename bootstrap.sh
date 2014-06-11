@@ -30,3 +30,6 @@ if [ -d "$BOOTSTRAP_MODS_DIR" ]; then
         bash ${module}
     done
 fi
+
+npm install -g bower
+npm install -g gulp
