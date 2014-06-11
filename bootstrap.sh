@@ -5,7 +5,7 @@ if [ `uname` != "Linux" ]; then
     exit 1
 fi
 
-BASE_TOOLS="rpm-build python-pip npm"
+BASE_TOOLS="rpm-build python-pip"
 DEV_TOOLS="colordiff diffstat doxygen gcc-c++ git-all htop man man-pages make patch patchutils python-tox python-virtualenv rpm-build subversion vim-enhanced python-tox"
 PACKAGES="net-tools"
 
@@ -30,6 +30,3 @@ if [ -d "$BOOTSTRAP_MODS_DIR" ]; then
         bash ${module}
     done
 fi
-
-npm install -g bower
-npm install -g gulp
