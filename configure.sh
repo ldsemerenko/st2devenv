@@ -64,6 +64,8 @@ if [ "$#" -ne "0" ]; then
                 activate logstash.sh
                 activate mongodb.sh
                 activate tox.sh
+                activate npm.sh
+                activate npm-modules.sh
                 shift
                 ;;
             clean)
