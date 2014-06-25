@@ -1,7 +1,10 @@
 code
+code.sparseimage
 *~
 *.swp
 .vagrant
 logstash/sincedb*
 bootstrap-mods-active/*
 stackaton
+
+.idea

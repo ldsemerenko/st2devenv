@@ -60,7 +60,6 @@ if [ "$#" -ne "0" ]; then
                 activate codedir.sh
                 activate disablefirewall.sh
                 activate epel.sh
-                activate hubot.sh
                 activate logstash.sh
                 activate mongodb.sh
                 activate tox.sh
