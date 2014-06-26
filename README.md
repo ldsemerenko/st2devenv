@@ -2,22 +2,25 @@ devenv
 ======
 
 StackStorm development environment
-----------------------------------
 
+Usage
+-----
 The StackStorm development environment is packaged in a vagrant-managed VM. To
 setup the VM, copy the vagrant box image from Google Drive then checkout the
 devenv setup from github.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-physical_host$ vagrant box add --name fedora20-dev-x86_64 gdrive:StackStorm/Demo/stackaton_environment/fedora20-dev-x86_64.box
+    $ git clone https://github.com/StackStorm/devenv.git
+    $ cd devenv
+    $ vagrant up
+    $ vagrant ssh
 
-physical_host$ git clone https://github.com/StackStorm/devenv.git
+You may also need to sync your `code` folders between host and guest for easier development process.
 
-physical_host$ cd devenv
+If you are using OSX, you can just install `vagrant-sparseimage` plugin (original version hasn't
+been updated since July 2013, so I've created [a fork][fork]. It is already configured to work
+out-the-box to provide you with case-sensitive environment to work with.
 
-physical_host$ vagrant up
+Another option is to setup [nfs share][nfswiki].
 
-physical_host$ vagrant ssh
-
-guest$ cd /home/vagrant/code
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[fork]: http://guthub.com/enykeev/vagrant-sparseimage
+[nfswiki]: https://stackstorm.atlassian.net/wiki/display/STORM/Developing+in+PyCharm
