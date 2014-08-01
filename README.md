@@ -10,14 +10,15 @@ devenv setup from github.
 
     $ git clone https://github.com/StackStorm/devenv.git
     $ cd devenv
+    $ ./configure.sh dev
     $ vagrant up
     $ vagrant ssh
 
 You may also need to sync your `code` folders between host and guest for easier development process.
 
 If you are using OSX, you can just install `vagrant-sparseimage` plugin (original version hasn't
-been updated since July 2013, so I've created [a fork][fork]. It is already configured to work
-out-the-box to provide you with case-sensitive environment to work with.
+been updated since July 2013, so enykeev created [a fork][fork]. It is already configured to work
+out-the-box to provide you with case-sensitive environment to work with. BE AWARE: it's SLOW.
 
 Another option is to setup [nfs share][nfswiki].
 
