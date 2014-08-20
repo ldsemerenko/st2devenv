@@ -6,7 +6,7 @@ if [ `uname` != "Linux" ]; then
 fi
 
 BASE_TOOLS="python-pip"
-DEV_TOOLS="colordiff diffstat doxygen build-essential git htop man man-pages make patch patchutils python-tox python-virtualenv subversion vim-enhanced python-tox screen"
+DEV_TOOLS="colordiff diffstat doxygen build-essential git htop man man-pages make patch patchutils python-virtualenv python-dev subversion vim-enhanced screen"
 PACKAGES="net-tools"
 
 #EPEL_PACKAGES="python-virtualenv"
