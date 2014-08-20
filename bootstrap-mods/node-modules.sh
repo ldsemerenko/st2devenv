@@ -3,7 +3,7 @@ NPM_MODULES="bower gulp"
 
 install_node_modules() {
     # Install node, npm, and npm modules.
-    yum -y install npm
+    apt-get -y install npm
     npm install -g ${NPM_MODULES}
 }
 

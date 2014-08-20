@@ -5,22 +5,22 @@ if [ `uname` != "Linux" ]; then
     exit 1
 fi
 
-BASE_TOOLS="rpm-build python-pip"
-DEV_TOOLS="colordiff diffstat doxygen gcc-c++ git-all htop man man-pages make patch patchutils python-tox python-virtualenv rpm-build subversion vim-enhanced python-tox screen"
+BASE_TOOLS="python-pip"
+DEV_TOOLS="colordiff diffstat doxygen build-essential git-all htop man man-pages make patch patchutils python-tox python-virtualenv subversion vim-enhanced python-tox screen"
 PACKAGES="net-tools"
 
 #EPEL_PACKAGES="python-virtualenv"
 EPEL_PACKAGES=""
 
 
-yum -y install ${BASE_TOOLS}
+apt-get -y install ${BASE_TOOLS}
 
 #Note(dzimine): Temporarily commented out to speed up.
-yum -y update
+apt-get -y update
 
-yum -y install ${DEV_TOOLS} ${PACKAGES} ${EPEL_PACKAGES}
+apt-get -y install ${DEV_TOOLS} ${PACKAGES} ${EPEL_PACKAGES}
 
-yum clean all
+apt-get clean all
 
 # Install bootstrap modules:
 BOOTSTRAP_MODS_DIR="/vagrant/bootstrap-mods-active"

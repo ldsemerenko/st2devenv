@@ -6,11 +6,17 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = "fedora20-dev-x86_64"
+    config.vm.box = "ubuntu-14-04-dev-x86_64"
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    config.vm.box_url = "https://s3-us-west-1.amazonaws.com/stackstorm.com/images/fedora20-dev-x86_64.box"
+    config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+
+    config.vm.define "ubuntuhost" do |ubuntuhost|
+    end
+    config.vm.provider :virtualbox do |vb|
+      vb.name = "ubuntu-host"
+    end
 
     # Configure a private network
     config.vm.network "private_network", ip: "172.168.50.50"
