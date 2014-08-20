@@ -1,1 +1,1 @@
-apt-get -y install icu libicu libicu-devel
+apt-get -y install libicu-dev
