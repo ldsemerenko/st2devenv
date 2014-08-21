@@ -5,7 +5,7 @@ install_mongodb() {
     echo "replSet = rs0" >> /etc/mongodb.conf
     echo "oplogSize = 100" >> /etc/mongodb.conf
     # Make mongodb start now
-    service mongodb start
+    service mongodb restart
     # Add hostname to /etc/hosts
     echo -e '127.0.0.1'\\t`hostname` >> /etc/hosts
     # Wait for mongo to spin up

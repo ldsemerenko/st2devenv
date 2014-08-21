@@ -60,6 +60,7 @@ if [ "$#" -ne "0" ]; then
                 activate mongodb.sh
                 activate tox.sh
                 activate node-modules.sh
+                activate node.sh
                 activate unicode.sh
                 shift
                 ;;
