@@ -6,20 +6,13 @@ if [ `uname` != "Linux" ]; then
 fi
 
 BASE_TOOLS="python-pip"
-DEV_TOOLS="colordiff diffstat doxygen build-essential git htop man manpages make patch patchutils python-virtualenv python-dev subversion screen realpath"
+DEV_TOOLS="build-essential git htop man manpages make python-virtualenv python-dev screen realpath"
 PACKAGES="net-tools"
-
-#EPEL_PACKAGES="python-virtualenv"
 EPEL_PACKAGES=""
 
-
 apt-get -y install ${BASE_TOOLS}
-
-#Note(dzimine): Temporarily commented out to speed up.
 apt-get -y update
-
 apt-get -y install ${DEV_TOOLS} ${PACKAGES} ${EPEL_PACKAGES}
-
 apt-get clean all
 
 # Install bootstrap modules:

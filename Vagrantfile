@@ -22,18 +22,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network "private_network", ip: "172.168.50.50"
 
     # Forward Action controller port = 9101
-    config.vm.network "forwarded_port", guest: 9101, host: 9101
+    # config.vm.network "forwarded_port", guest: 9101, host: 9101
+ 
     # Forward ActionRunner controller port = 9501
-    config.vm.network "forwarded_port", guest: 9501, host: 9501
+    # config.vm.network "forwarded_port", guest: 9501, host: 9501
+ 
+    # Forward Reactor controller port = 9102
+    # config.vm.network "forwarded_port", guest: 9102, host: 9102
+ 
+    # Forward Datastore controller port = 9103
+    # config.vm.network "forwarded_port", guest: 9103, host: 9103
 
     # Forward stackaton REST API port
-    config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
+    # config.vm.network "forwarded_port", guest: 9090, host: 9090, auto_correct: true
 
     # Forward ElasticSearch port
-    config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true
+    # config.vm.network "forwarded_port", guest: 9200, host: 9200, auto_correct: true
 
     # Forward Kibana port
-    config.vm.network "forwarded_port", guest: 9292, host: 9292, auto_correct: true
+    # config.vm.network "forwarded_port", guest: 9292, host: 9292, auto_correct: true
 
     if Vagrant.has_plugin?("vagrant-sparseimage")
       config.sparseimage.add_image do |image|
