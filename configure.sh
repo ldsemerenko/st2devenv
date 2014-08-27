@@ -49,9 +49,7 @@ if [ "$#" -ne "0" ]; then
             stackaton)
                 activate codedir.sh
                 activate disablefirewall.sh
-                activate epel.sh
                 activate hubot.sh
-                activate logstash.sh
                 activate mongodb.sh
                 activate tox.sh
                 shift
@@ -59,11 +57,10 @@ if [ "$#" -ne "0" ]; then
             dev)
                 activate codedir.sh
                 activate disablefirewall.sh
-                activate epel.sh
-                activate logstash.sh
                 activate mongodb.sh
                 activate tox.sh
                 activate node-modules.sh
+                activate node.sh
                 activate unicode.sh
                 shift
                 ;;

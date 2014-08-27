@@ -1,6 +1,6 @@
 PACKAGES="npm icu libicu libicu-devel"
 
-yum -y install ${PACKAGES}
+apt-get -y install ${PACKAGES}
 
 npm install -g hubot coffee-script
 
