@@ -57,10 +57,12 @@ if [ "$#" -ne "0" ]; then
             dev)
                 activate codedir.sh
                 activate disablefirewall.sh
+                activate mistral.sh
                 activate mongodb.sh
-                activate tox.sh
                 activate node-modules.sh
                 activate node.sh
+                activate rabbitmq.sh
+                activate tox.sh
                 activate unicode.sh
                 shift
                 ;;
