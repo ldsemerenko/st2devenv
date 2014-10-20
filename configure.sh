@@ -3,6 +3,7 @@
 
 BOOTSTRAPMODS_DIR=bootstrap-mods
 BOOTSTRAPMODS_ACTIVE_DIR=bootstrap-mods-active
+BOOTSTRAPMODS_STEP=0
 
 print_usage()
 {
@@ -28,7 +29,10 @@ activate()
         exit -1
     fi
 
-    ln -s ../$BOOTSTRAPMODS_DIR/$SCRIPT $BOOTSTRAPMODS_ACTIVE_DIR
+    ((BOOTSTRAPMODS_STEP+=1))
+    STEP=`printf %02d $BOOTSTRAPMODS_STEP`
+    LNPATH=$BOOTSTRAPMODS_ACTIVE_DIR/$STEP-$SCRIPT
+    ln -s ../$BOOTSTRAPMODS_DIR/$SCRIPT $LNPATH
 }
 
 
@@ -57,13 +61,14 @@ if [ "$#" -ne "0" ]; then
             dev)
                 activate codedir.sh
                 activate disablefirewall.sh
-                activate mistral.sh
-                activate mongodb.sh
-                activate node-modules.sh
-                activate node.sh
-                activate rabbitmq.sh
                 activate tox.sh
                 activate unicode.sh
+                activate node.sh
+                activate node-modules.sh
+                activate mysql.sh
+                activate mistral.sh
+                activate rabbitmq.sh
+                activate mongodb.sh
                 shift
                 ;;
             clean)
