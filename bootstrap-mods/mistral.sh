@@ -9,7 +9,7 @@ fi
 touch $config
 cat <<mistral_config >$config
 [database]
-connection=sqlite:////etc/mistral/mistral.db
+connection=mysql://mistral:mistral@localhost/mistral
 
 [pecan]
 auth_enable=false
@@ -23,11 +23,18 @@ if [ -e "$upstart" ]; then
 fi
 touch $upstart
 cat <<mistral_upstart >$upstart
-description "OpenStack Workflow Services"
+description "OpenStack Workflow Service"
 script
     /opt/openstack/mistral/.venv/bin/python /opt/openstack/mistral/mistral/cmd/launch.py --config-file /etc/mistral/mistral.conf
 end script
 mistral_upstart
+}
+
+setup_mistral_db() {
+    mysql -uroot -pStackStorm -e "DROP DATABASE IF EXISTS mistral"
+    mysql -uroot -pStackStorm -e "CREATE DATABASE mistral"
+    mysql -uroot -pStackStorm -e "GRANT ALL PRIVILEGES ON mistral.* TO 'mistral'@'%' IDENTIFIED BY 'mistral'"
+    mysql -uroot -pStackStorm -e "FLUSH PRIVILEGES"
 }
 
 install_mistral() {
@@ -36,7 +43,7 @@ install_mistral() {
     apt-get -y install libyaml-dev
     apt-get -y install libffi-dev
     apt-get -y install libxml2-dev libxslt1-dev python-dev
-    apt-get -y install sqlite3
+    apt-get -y install libmysqlclient-dev
 
     # Clone mistral from github.
     mkdir -p /opt/openstack
@@ -44,19 +51,32 @@ install_mistral() {
     if [ -d "/opt/openstack/mistral" ]; then
         rm -r /opt/openstack/mistral
     fi
-    git clone -b STORM-425/workflow https://github.com/StackStorm/mistral.git
+    git clone -b st2-0.51 https://github.com/StackStorm/mistral.git
 
     # Setup virtualenv for running mistral.
     cd /opt/openstack/mistral
     virtualenv --no-site-packages .venv
     . /opt/openstack/mistral/.venv/bin/activate
     pip install -r requirements.txt
-    python setup.py install
+    pip install -q mysql-python
+    python setup.py develop
+
+    # Setup plugins for actions.
+    mkdir -p /etc/mistral/actions
+    cd /etc/mistral/actions
+    git clone https://github.com/StackStorm/st2mistral.git
+    cd /etc/mistral/actions/st2mistral
+    python setup.py develop
 
     # Create configuration files.
     mkdir -p /etc/mistral
     write_config
     write_upstart
+
+    # Setup database.
+    cd /opt/openstack/mistral
+    setup_mistral_db
+    python ./tools/sync_db.py --config-file /etc/mistral/mistral.conf
 }
 
 install_mistral
