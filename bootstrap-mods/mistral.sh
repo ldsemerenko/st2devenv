@@ -51,32 +51,33 @@ install_mistral() {
     if [ -d "/opt/openstack/mistral" ]; then
         rm -r /opt/openstack/mistral
     fi
-    git clone -b st2-0.51 https://github.com/StackStorm/mistral.git
+    git clone -b st2-0.5.1 https://github.com/StackStorm/mistral.git
 
-    # Setup virtualenv for running mistral.
-    cd /opt/openstack/mistral
-    virtualenv --no-site-packages .venv
-    . /opt/openstack/mistral/.venv/bin/activate
-    pip install -r requirements.txt
-    pip install -q mysql-python
-    python setup.py develop
+    if [ -d "/opt/openstack/mistral" ]; then
+        # Setup virtualenv for running mistral.
+        cd /opt/openstack/mistral
+        virtualenv --no-site-packages .venv
+        . /opt/openstack/mistral/.venv/bin/activate
+        pip install -r requirements.txt
+        pip install -q mysql-python
+        python setup.py develop
 
-    # Setup plugins for actions.
-    mkdir -p /etc/mistral/actions
-    cd /etc/mistral/actions
-    git clone https://github.com/StackStorm/st2mistral.git
-    cd /etc/mistral/actions/st2mistral
-    python setup.py develop
+        # Setup plugins for actions.
+        mkdir -p /etc/mistral/actions
+        cd /etc/mistral/actions
+        git clone -b st2-0.5.1 https://github.com/StackStorm/st2mistral.git
+        cd /etc/mistral/actions/st2mistral
+        python setup.py develop
 
-    # Create configuration files.
-    mkdir -p /etc/mistral
-    write_config
-    write_upstart
+        # Create configuration files.
+        write_config
+        write_upstart
 
-    # Setup database.
-    cd /opt/openstack/mistral
-    setup_mistral_db
-    python ./tools/sync_db.py --config-file /etc/mistral/mistral.conf
+        # Setup database.
+        cd /opt/openstack/mistral
+        setup_mistral_db
+        python ./tools/sync_db.py --config-file /etc/mistral/mistral.conf
+    fi
 }
 
 install_mistral
