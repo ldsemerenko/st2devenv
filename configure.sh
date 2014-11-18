@@ -59,6 +59,7 @@ if [ "$#" -ne "0" ]; then
                 shift
                 ;;
             dev)
+                activate adduser.sh
                 activate codedir.sh
                 activate disablefirewall.sh
                 activate tox.sh
