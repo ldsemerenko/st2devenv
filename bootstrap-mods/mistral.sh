@@ -11,6 +11,7 @@ CONFIG_DIR="/etc/mistral"
 
 ST2_REPO="StackStorm"
 ST2_CODE_DIR="${USERHOME}/code/stackstorm"
+ST2_STABLE_BRANCH="st2-0.8.0"
 
 OS_REPO="stackforge"
 OS_CODE_DIR="${USERHOME}/code/openstack"
@@ -52,10 +53,13 @@ do
     if [[ ! -d "${i}" ]]; then
         echo "Unable to clone ${i}..."
         exit 1
-    else
-        chown -R ${USER}:${USER} ${i}
     fi
 done
+
+chown -R ${USER}:${USER} ${OPT_DIR}
+chown -R ${USER}:${USER} ${CONFIG_DIR}
+chown -R ${USER}:${USER} ${OS_CODE_DIR}
+chown -R ${USER}:${USER} ${ST2_CODE_DIR}
 
 
 setup_mistral_config()
@@ -97,6 +101,10 @@ touch $upstart
 cat <<mistral_upstart >$upstart
 description "Mistral Workflow Service"
 
+start on runlevel [2345]
+stop on runlevel [016]
+respawn
+
 exec ${OPT_DIR}/mistral/.venv/bin/python ${OPT_DIR}/mistral/mistral/cmd/launch.py --config-file ${CONFIG_DIR}/mistral.conf --log-config-append ${CONFIG_DIR}/wf_trace_logging.conf
 mistral_upstart
 }
@@ -133,21 +141,25 @@ install_mistral() {
     # Create symlink in the opt directory.
     cd ${OPT_DIR}
     rm -f ${OPT_DIR}/mistral
-    ln -s ${OS_CODE_DIR}/mistral mistral
+    ln -s ${ST2_CODE_DIR}/mistral mistral
 
     # Setup and activate the virtualenv for running mistral.
-    cd ${OS_CODE_DIR}/mistral
+    cd ${ST2_CODE_DIR}/mistral
     virtualenv --no-site-packages .venv
-    . ${OS_CODE_DIR}/mistral/.venv/bin/activate
+    . ${ST2_CODE_DIR}/mistral/.venv/bin/activate
 
     # Install mistral.
-    cd ${OS_CODE_DIR}/mistral
+    cd ${ST2_CODE_DIR}/mistral
+    git remote update
+    git checkout -b ${ST2_STABLE_BRANCH} origin/${ST2_STABLE_BRANCH}
     pip install -r requirements.txt
     pip install -q mysql-python
     python setup.py develop
 
     # Setup plugins for custom actions.
     cd ${ST2_CODE_DIR}/st2mistral
+    git remote update
+    git checkout -b ${ST2_STABLE_BRANCH} origin/${ST2_STABLE_BRANCH}
     python setup.py develop
 
     # Create configuration files.
@@ -158,10 +170,15 @@ install_mistral() {
     # Setup database.
     setup_mistral_db_reset_script
     ${CONFIG_DIR}/reset_db.sh
+
+    # Deactivate virtualenv
+    deactivate
 }
 
 install_mistral_client() {
-    cd ${OS_CODE_DIR}/python-mistralclient
+    cd ${ST2_CODE_DIR}/python-mistralclient
+    git remote update
+    git checkout -b ${ST2_STABLE_BRANCH} origin/${ST2_STABLE_BRANCH}
     python setup.py develop
 }
 
