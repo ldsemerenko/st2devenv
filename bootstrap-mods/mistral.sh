@@ -132,7 +132,7 @@ install_prereq() {
 install_mistral() {
     # Create symlink in the opt directory.
     cd ${OPT_DIR}
-    rm ${OPT_DIR}/mistral
+    rm -f ${OPT_DIR}/mistral
     ln -s ${OS_CODE_DIR}/mistral mistral
 
     # Setup and activate the virtualenv for running mistral.
