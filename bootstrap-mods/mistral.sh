@@ -74,7 +74,7 @@ cat <<mistral_config >$config
 connection=mysql://mistral:StackStorm@localhost/mistral
 max_pool_size=100
 max_overflow=400
-pool_recycle=3600
+pool_recycle=120
 
 [pecan]
 auth_enable=false
@@ -125,6 +125,10 @@ mysql -uroot -pStackStorm -e "FLUSH PRIVILEGES"
 
 cd ${OPT_DIR}/mistral
 ${OPT_DIR}/mistral/.venv/bin/python ./tools/sync_db.py --config-file ${CONFIG_DIR}/mistral.conf
+
+sed -i 's/#max_connections        = 100/max_connections        = 500/' /etc/mysql/my.cnf
+service mysql restart
+
 mistral_reset_db
 chmod +x $reset_db
 }
