@@ -11,7 +11,7 @@ CONFIG_DIR="/etc/mistral"
 
 ST2_REPO="StackStorm"
 ST2_CODE_DIR="${USERHOME}/code/stackstorm"
-ST2_STABLE_BRANCH="st2-0.8.0"
+ST2_STABLE_BRANCH="st2-0.8.1"
 
 OS_REPO="stackforge"
 OS_CODE_DIR="${USERHOME}/code/openstack"
