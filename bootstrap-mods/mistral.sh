@@ -72,9 +72,7 @@ touch $config
 cat <<mistral_config >$config
 [database]
 connection=mysql://mistral:StackStorm@localhost/mistral
-max_pool_size=100
-max_overflow=400
-pool_recycle=120
+max_pool_size=50
 
 [pecan]
 auth_enable=false
