@@ -6,16 +6,16 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box = "ubuntu-14-04-dev-x86_64"
+    config.vm.box = "ubuntu-14-10-dev-x86_64"
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+    config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/utopic/current/utopic-server-cloudimg-amd64-vagrant-disk1.box"
 
-    config.vm.define "ubuntuhost" do |ubuntuhost|
+    config.vm.define "ubuntu_utopic" do |ubuntu_utopic|
     end
     config.vm.provider :virtualbox do |vb|
-      vb.name = "ubuntu-host"
+      vb.name = "ubuntu-utopic-st2-dev"
       vb.memory = 1024
     end
 
@@ -24,13 +24,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Forward Action controller port = 9101
     # config.vm.network "forwarded_port", guest: 9101, host: 9101
- 
+
     # Forward ActionRunner controller port = 9501
     # config.vm.network "forwarded_port", guest: 9501, host: 9501
- 
+
     # Forward Reactor controller port = 9102
     # config.vm.network "forwarded_port", guest: 9102, host: 9102
- 
+
     # Forward Datastore controller port = 9103
     # config.vm.network "forwarded_port", guest: 9103, host: 9103
 
