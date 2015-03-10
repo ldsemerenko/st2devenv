@@ -5,12 +5,10 @@ StackStorm development environment
 
 Usage
 -----
-The StackStorm development environment is packaged in a vagrant-managed VM. The [vagrant box is on S3](https://s3-us-west-1.amazonaws.com/stackstorm.com/images/fedora20-dev-x86_64.box). Checkout the
+The StackStorm development environment is packaged in a vagrant-managed VM. The [vagrant box is on cloudimages-ubuntu](https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box). Checkout the
 devenv setup from github.
 
-    $ git clone https://github.com/StackStorm/devenv.git
-    $ cd devenv
-    $ ./configure.sh dev
+    $ git clone https://github.com/StackStorm/st2devenv.git
     $ vagrant up
     $ vagrant ssh
 
