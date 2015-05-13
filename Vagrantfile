@@ -16,7 +16,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     config.vm.provider :virtualbox do |vb|
       vb.name = "ubuntu-utopic-st2-dev"
-      vb.memory = 1024
     end
 
     # Configure a private network
